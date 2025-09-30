@@ -173,16 +173,52 @@ https://engineeringxpert.com/wp-content/uploads/2022/04/26.png
 
 
 ## STM 32 CUBE PROGRAM :
+```
+#include "main.h"
+#include "lcd.h"
+Lcd_PortType ports[]={GPIOA,GPIOA,GPIOA,GPIOA};
+Lcd_PinType pins[]={GPIO_PIN_3,GPIO_PIN_2,GPIO_PIN_1,GPIO_PIN_0};
+Lcd_HandleTypeDef lcd;
+
+void SystemClock_Config(void);
+static void MX_GPIO_Init(void);
+int main(void)
+{
+  HAL_Init();
+  SystemClock_Config();
+  MX_GPIO_Init();
+
+  lcd=Lcd_create(ports,pins,GPIOB,GPIO_PIN_0,GPIOB,GPIO_PIN_1,LCD_4_BIT_MODE);
+  while (1)
+  {
+    lcd_display();
+  }
+}
+
+void lcd_display()
+{
+	Lcd_cursor(&lcd,0,1);
+	Lcd_string(&lcd,"PRITHIVIRAJAN Y\n");
+
+	Lcd_cursor(&lcd,1,1);
+	Lcd_string(&lcd,"100042\n");
+}
+```
 
 
+## Hexadecimal file screenshot :
+<img width="1392" height="1003" alt="image" src="https://github.com/user-attachments/assets/434a6b91-6ae8-4eb6-af33-367ca47b81f7" />
 
 
 ## Output screen shots of proteus  :
  
+<img width="983" height="686" alt="image" src="https://github.com/user-attachments/assets/2c8b4e26-3671-49cc-bafd-cb8cb9581fd1" />
+
  
  ## CIRCUIT DIAGRAM (EXPORT THE GRAPHICS TO PDF AND ADD THE SCREEN SHOT HERE): 
  
- 
+ <img width="1008" height="747" alt="image" src="https://github.com/user-attachments/assets/bac8be74-0ebb-4fa4-b799-9459346295c8" />
+
 ## Result :
 Interfacing a lcd display with ARM microcontroller are simulated in proteus and the results are verified.
 
